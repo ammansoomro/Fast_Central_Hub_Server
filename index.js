@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const cors = require('cors');
+
 
 const authRoute = require('./routes/auth');
 const userRoute = require('./routes/users');
@@ -16,7 +18,7 @@ const eventRoute = require('./routes/events');
 const projectRoute = require('./routes/projects');
 const announcementRoute = require('./routes/announcements');
 dotenv.config();
-
+app.use(cors());
 mongoose.connect(process.env.MONGOURL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
     console.log('Connected to Backend (MongoDB)');
 }).catch((err) => {
